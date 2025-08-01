@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Arcane Landing Page</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
+  <style>
+    .mobile-header {
+      position: fixed;
+      top: 0;
+      right: 0;
+      padding: 1rem;
+      z-index: 9999;
+      display: flex;
+      justify-content: flex-end;
+      width: 100%;
+      background-color: #2c2c2c00;
+    }
+
+    .hamburger {
+      width: 40px;
+      height: 30px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      cursor: pointer;
+    }
+
+    .bar {
+      height: 10px;
+      background-color: #07f456;
+      border-radius: 10px;
+      transition: 0.3s;
+    }
+
+    .hamburger.open .bar:nth-child(1) {
+      transform: rotate(45deg) translate(6px, 6px);
+    }
+
+    .hamburger.open .bar:nth-child(2) {
+      opacity: 0;
+    }
+
+    .hamburger.open .bar:nth-child(3) {
+      transform: rotate(-45deg) translate(6px, -6px);
+    }
+
+    /* Mobile Menu Styles */
+    .mobile-menu {
+      position: fixed;
+      top: 60px;
+      right: 0;
+      width: 200px;
+      background-color: #00c0702d;
+      color: #fff;
+      display: none;
+      flex-direction: column;
+      padding: 1rem;
+      z-index: 9998;
+    }
+
+.mobile-header {
+  position: fixed;
+  top: 0.75rem;
+  right: 1rem;
+  padding: 0.6rem 1rem;
+  z-index: 9999;
+  display: flex;
+  justify-content: flex-end;
+  width: auto;
+  background: rgba(255, 255, 255, 0);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: 16px;
+  box-shadow: 0 0 20px rgba(0, 255, 106, 0);
+}
+
+.hamburger .bar {
+  height: 4px;
+  background-color: #07f456;
+  border-radius: 5px;
+  transition: 0.3s;
+}
+
+.mobile-menu {
+  transition: all 0.3s ease-in-out;
+  border-radius: 0 0 12px 12px;
+}
+
+
+    .mobile-menu a {
+      color: #07f47e;
+      text-decoration: none;
+      margin: 10px 0;
+      font-size: 18px;
+    }
+
+    .mobile-menu.active {
+      display: flex;
+    }
+  </style>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Orbitron', sans-serif;
+      background: #0a0a0a;
+      color: #fff;
+      overflow: hidden;
+    }
+
+    .container {
+      position: relative;
+      width: 100vw;
+      height: 100vh;
+      background: #0a0a0a;
+    }
+
+    .background-image {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('/mnt/data/download.jpg') no-repeat center center/cover;
+      z-index: 0;
+    }
+
+    .overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.7);
+      z-index: 1;
+    }
+
+    .green-splash {
+      position: absolute;
+      top: 10%;
+      right: 12%;
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, rgba(0,255,0,0.8), rgba(0, 255, 136, 0.8) 0%, transparent 60%);
+      z-index: 2;
+      filter: blur(60px);
+      pointer-events: none;
+      animation: pulse 3s infinite ease-in-out;
+    }
+ @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    @keyframes pulse {
+      0%, 100% {
+        transform: scale(1);
+        opacity: 0.8;
+      }
+      50% {
+        transform: scale(1.15);
+        opacity: 1;
+      }
+    }
+
+    .background-text {
+      position: absolute;
+      top: 50%;
+      left: 5%;
+      transform: translateY(-50%);
+      font-size: 14rem;
+      font-weight: bold;
+      color: rgba(0, 255, 0, 0.062);
+      letter-spacing: 10px;
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    .nav {
+      position: absolute;
+      top: 2rem;
+      right: 3rem;
+      z-index: 3;
+    }
+
+    .nav button {
+      background: transparent;
+      border: 1px solid #fff;
+      color: #fff;
+      padding: 0.5rem 1.25rem;
+      font-size: 0.9rem;
+      cursor: pointer;
+    }
+
+    .content {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: left;
+      max-width: 1200px;
+      z-index: 3;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 2rem;
+    }
+
+    .logo {
+      font-size: 6rem;
+      font-weight: bold;
+      color: #ddd;
+      letter-spacing: 5px;
+    }
+
+    .character-image {
+      width: 550px;
+      height: auto;
+    }
+
+    .text-block {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .tagline {
+      font-size: 1.25rem;
+      color: #00ff6a;
+      margin-top: 1.5rem;
+    }
+
+    .subtext {
+      font-size: 0.95rem;
+      color: #bbb;
+      margin-top: 0.25rem;
+    }
+
+    .discover-btn {
+      margin-top: 2rem;
+      padding: 0.75rem 2rem;
+      background: transparent;
+      border: 2px solid #00ff6a;
+      color: #00ff6a;
+      font-size: 0.95rem;
+      cursor: pointer;
+      text-transform: uppercase;
+      transition: all 0.3s ease;
+    }
+
+    .discover-btn:hover {
+      background: #00ff6a;
+      color: #000;
+    }
+
+    .footer {
+      position: absolute;
+      bottom: 1rem;
+      width: 100%;
+      text-align: center;
+      font-size: 0.75rem;
+      color: #888;
+      z-index: 3;
+    }
+  </style>
+</head>
+<body>
+    <div class="logo-header">
+  <img src="C:\Users\PROACT HP\Downloads\ChatGPT Image Jun 27, 2025, 02_18_19 AM.png" alt="Xolar Logo" />
+</div>
+
+  <div class="container">
+    <div class="background-image"></div>
+    <div class="overlay"></div>
+    <div class="green-splash"></div>
+    <div class="background-text">Software</div>
+
+ <div class="mobile-header">
+    <div class="hamburger" onclick="toggleMenu(this)">
+      <div class="bar"></div>
+      <div class="bar"></div>
+      <div class="bar"></div>
+    </div>
+  </div>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="file:///C:/Users/PROACT%20HP/Desktop/WEB/home.html">Home</a>
+    <a href="file:///C:/Users/PROACT%20HP/Desktop/xena.html">Xena AI</a>
+    <a href="file:///C:/Users/PROACT%20HP/Desktop/new%20translator.html">XT Translate</a>
+    <a href="file:///C:/Users/PROACT%20HP/Desktop/xred.html">Learningsection</a>
+    <a href="">XR Trade</a>
+    <a href="file:///C:/Users/PROACT%20HP/Desktop/database.html">signUp</a>
+    <a href="">About</a>
+    <a href="#contact">Contact</a>
+  </div>  
+    <div class="content">
+      <div class="text-block">
+        <div class="logo">XOLAR</div>
+        <div class="tagline">"There is a cyber universe"</div>
+        <div class="subtext">Inside all of us</div>
+       <a href="file:///C:/Users/PROACT%20HP/Desktop/WEB/home.html" class="discover-btn">Discover</a>
+      </div>
+      <img src="C:\Users\PROACT HP\Downloads\Futuristic_Helmet___Graphic_Design-removebg-preview.png" alt="Character" class="character-image" />
+    </div>
+
+    <div class="footer">2025 © All rights reserved for Xolar Software</div>
+    
+
+  </div>
+  <audio id="startup-sound" preload="auto">
+  <source src="C:\Users\PROACT HP\Downloads\sci-fi-intro-logo-reveal-227279.mp3" type="audio/mpeg">
+</audio>
+
+  <script>
+     
+    function toggleMenu(hamburger) {
+      hamburger.classList.toggle('open');
+      const menu = document.getElementById('mobileMenu');
+      menu.classList.toggle('active');
+    }
+  </script>
+  <div id="preloader">
+    <div class="preloader-content"><img src="C:\Users\PROACT HP\Downloads\Exchange_Logo-removebg-preview.png"></div></div>
+  </div>
+  <script>
+    AOS.init({
+      duration: 7000, // Animation duration in milliseconds
+      easing: 'ease-out-cubic', // Easing style
+      once: true, // Animation runs only once
+    });
+  </script>
+  
+  <style>
+    /* Preloader Styles */
+    #preloader {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgb(0, 0, 0); /* Dark background */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      opacity: 1;
+      visibility: visible;
+      transition: opacity 1s ease-out, visibility 3s ease-out;
+    }
+  
+    #preloader.hidden {
+      opacity: 0;
+      visibility: hidden;
+    }
+  
+    .preloader-content {
+      font-size: 5rem;
+      font-weight: bold;
+      color: palegreen; /* Pale green color for the "X" */
+      animation: pulse 2s infinite;
+    }
+  
+    /* Pulse animation for the "X" */
+    @keyframes pulse {
+      0%, 100% {
+        transform: scale(1);
+        opacity: 1;
+      }
+      50% {
+        transform: scale(1.2);
+        opacity: 0.7;
+      }
+    }
+  </style>
+  <script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const preloader = document.getElementById("preloader");
+    const sound = document.getElementById("startup-sound");
+
+    // Wait before fade out
+    setTimeout(() => {
+      preloader.classList.add("hidden");
+    }, 1000); // Longer to match video/sound
+
+    // Play sound
+    sound.play().catch((e) => {
+      console.warn("Autoplay failed, trying on user interaction.");
+      document.body.addEventListener("click", () => sound.play(), { once: true });
+    });
+  });
+</script>
+
+  <script>
+    // Wait for the DOM to fully load
+    document.addEventListener("DOMContentLoaded", function () {
+      const preloader = document.getElementById("preloader");
+  
+      // Simulate content load delay (for demo purposes)
+      setTimeout(() => {
+        preloader.classList.add("hidden"); // Add the hidden class to fade out
+      }, 8000); // Adjust the timeout as needed
+    });
+  </script>
+  <style>
+    .discover-btn {
+  margin-top: 2rem;
+  padding: 0.75rem 2.5rem;
+  border: 2px solid rgba(0, 255, 106, 0.5);
+  font-size: 0.95rem;
+  cursor: pointer;
+  text-transform: uppercase;
+  color: #00ff6a;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 12px;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  transition: color 0.3s ease, border 0.3s ease;
+}
+
+.discover-btn::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: conic-gradient(from 0deg, #00ff6a, #004d00, #00ff6a);
+  animation: rotateGradient 6s linear infinite;
+  z-index: 0;
+  opacity: 0.3;
+}
+
+.discover-btn::after {
+  content: '';
+  position: absolute;
+  top: 1px;
+  left: 1px;
+  right: 1px;
+  bottom: 1px;
+  background: rgba(0, 0, 0, 0.4);
+  border-radius: 10px;
+  z-index: 1;
+}
+
+.discover-btn:hover {
+  color: #000;
+  border-color: #00ff6a;
+}
+
+@keyframes rotateGradient {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+  </style>
+  <style>
+    .logo-header {
+  position: fixed;
+  top: 1rem;
+  left: 1.5rem;
+  z-index: 9999;
+}
+
+.logo-header img {
+  height: 100px;
+  width: auto;
+  border-radius: 12px;
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  background: rgba(255, 255, 255, 0);
+  padding: 0.3rem;
+  box-shadow: 0 0 10px rgba(0, 255, 106, 0);
+}
+
+  </style>
+</body>
+</html>

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8">  
+  <title>Xolar Translator</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+  <style>
+    :root {
+      --text: hsl(0, 0%, 100%);
+      --textDim: hsl(0, 0%, 60%);
+      --primary: hsl(155, 100%, 65%);
+      --primaryHi: hsla(155, 100%, 75%, 25%);
+      --accentHi: hsla(155, 100%, 100%, 25%);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(-45deg, #375241, #3b8d67, black, #80B192);
+      background-size: 400% 400%;
+      animation: gradientBG 15s ease infinite;
+      min-height: 100vh;
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    @keyframes gradientBG {
+      0% {background-position: 0% 50%;}
+      50% {background-position: 100% 50%;}
+      100% {background-position: 0% 50%;}
+    }
+
+    .loading-screen {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(-45deg, #0f0c29, #302b63, #24243e, #000);
+      background-size: 400% 400%;
+      animation: gradientBG 8s ease infinite;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      color: #0f0;
+    }
+
+    .loading-screen img {
+      width: 150px;
+      animation: pulse 2s infinite ease-in-out;
+    }
+
+    .loading-text {
+      margin-top: 20px;
+      font-size: 1.5rem;
+      letter-spacing: 2px;
+    }
+
+    @keyframes pulse {
+      0%, 100% {
+        opacity: 0.6;
+        transform: scale(1);
+      }
+      50% {
+        opacity: 1;
+        transform: scale(1.1);
+      }
+    }
+
+    iframe {
+      width: 100%;
+      height: 100vh;
+      border: none;
+      z-index: 1;
+      position: relative;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- LOADING SCREEN -->
+  <div class="loading-screen" id="loader">
+    <img src="psy.png" alt="Loading..." />
+    <div class="loading-text">Loading Xolar Translator...</div>
+  </div>
+
+  <!-- MAIN CONTENT -->
+  <iframe class="scribd_iframe_embed" title="Cambridge O Level Biology"
+    src="https://www.scribd.com/embeds/601286136/content?start_page=1&view_mode=scroll&access_key=key-Ofoe8x8VIdA9fXHqcagM"
+    tabindex="0" scrolling="no"></iframe>
+
+  <script>
+    // Hide loading screen when content is ready
+    window.addEventListener("load", function () {
+      const loader = document.getElementById("loader");
+      loader.style.display = "none";
+    });
+  </script>
+
+</body>
+</html>

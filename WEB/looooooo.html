@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Climate Change & Global Warming</title>
+    <div>
+        <img src="C:\Users\PROACT HP\Downloads\Climate_Change_Myths_Debunked__Get_the_Real_Facts-removebg-preview.png">
+    </div>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        :root {
+            --text: hsl(0, 0%, 99%);
+            --textDim: hsl(0, 0%, 60%);
+            --background: hsl(0, 0%, 7%);
+            --primary: hsl(155, 100%, 65%);
+            --primaryBg: hsla(155, 100%, 65%, 1%);
+            --primaryHi: hsla(155, 100%, 75%, 25%);
+            --primaryFg: hsl(155, 100%, 85%);
+            --secondary: hsl(156, 51%, 14%);
+            --secondaryFg: hsl(156, 51%, 75%);
+            --secondaryBg: hsla(156, 51%, 14%, 5%);
+            --secondaryHi: hsla(156, 51%, 30%, 50%);
+            --accent: hsl(155, 100%, 94%);
+            --accentBg: hsla(155, 100%, 94%, 1%);
+            --accentHi: hsla(155, 100%, 100%, 25%);
+        }
+
+        html, body {
+            height: 100%;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            font-family: 'Manrope', sans-serif;
+            font-weight: 400;
+            background-color: var(--background);
+            color: var(--text);
+            margin: 0;
+            padding: 0;
+        }
+
+        main {
+            flex: 1;
+            padding-top: 80px;
+        }
+
+        section {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 5rem 2rem;
+            text-align: center;
+        }
+
+        h1, h2 {
+            font-size: 3rem;
+            color: var(--primary);
+        }
+
+        h3 {
+            font-size: 2rem;
+            color: var(--primary);
+        }
+
+        p {
+            font-size: 1.2rem;
+            color: var(--textDim);
+            max-width: 800px;
+            margin: 1rem auto;
+        }
+
+        a.button {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            background-color: var(--primary);
+            color: var(--background);
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 1rem;
+            transition: background-color 0.3s;
+        }
+
+        a.button:hover {
+            background-color: var(--accent);
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        ul li {
+            font-size: 1.2rem;
+            color: var(--textDim);
+            margin: 0.5rem 0;
+        }
+
+        footer {
+            text-align: center;
+            padding: 1rem;
+            background-color: var(--background);
+            color: var(--textDim);
+        }
+
+        .blur-bg {
+            position: absolute;
+            width: 12rem;
+            height: 12rem;
+            border-radius: 50%;
+            filter: blur(100px);
+        }
+
+        .top-right {
+            background-color: var(--primaryHi);
+            top: 10%;
+            right: 5%;
+        }
+
+        .bottom-left {
+            background-color: var(--accentHi);
+            bottom: 10%;
+            left: 5%;
+        }
+
+        /* Preloader Styles */
+        #preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgb(0, 0, 0);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            opacity: 1;
+            visibility: visible;
+            transition: opacity 1s ease-out, visibility 1s ease-out;
+        }
+
+        #preloader.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .preloader-content {
+            font-size: 5rem;
+            font-weight: bold;
+            color: palegreen;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+            50% {
+                transform: scale(1.2);
+                opacity: 0.7;
+            }
+        }
+
+        .social-container {
+            display: flex;
+            gap: 30px;
+            justify-content: center;
+            margin: 2rem 0;
+        }
+
+        .social-icon {
+            width: 60px;
+            height: 60px;
+            background: #1e1e1e;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 50%;
+            transition: 0.4s ease;
+            font-size: 28px;
+            text-decoration: none;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+        }
+
+        .social-icon:hover {
+            transform: scale(1.15);
+        }
+
+        .social-icon.instagram:hover {
+            background: radial-gradient(circle at 30% 30%, #feda75, #d62976, #962fbf, #4f5bd5);
+        }
+
+        .social-icon.twitter:hover {
+            background: #1DA1F2;
+        }
+
+        .social-icon.linkedin:hover {
+            background: #0077b5;
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                padding: 1rem;
+            }
+
+            section {
+                padding: 3rem 1rem;
+            }
+
+            h1, h2 {
+                font-size: 2.5rem;
+            }
+
+            h3 {
+                font-size: 1.8rem;
+            }
+
+            p {
+                font-size: 1rem;
+                padding: 0 10%;
+            }
+
+            ul li {
+                font-size: 1rem;
+            }
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            padding: 1rem 2rem;
+            z-index: 100;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            backdrop-filter: blur(5px);
+        }
+
+        nav a {
+            color: var(--text);
+            text-decoration: none;
+            margin: 0 1rem;
+        }
+
+        nav a:hover {
+            color: var(--primary);
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary);
+        }
+    </style>
+</head>
+<body>
+
+    <div id="preloader">
+        <div class="preloader-content">X</div>
+    </div>
+
+    <nav>
+        <a href="#" class="logo">XR Climate</a>
+        <div>
+            <a href="#home">Home</a>
+            <a href="#what-is-it">What is it?</a>
+            <a href="#causes">Causes</a>
+            <a href="#effects">Effects</a>
+            <a href="#solutions">Solutions</a>
+        </div>
+    </nav>
+
+    <main>
+        <section id="home">
+            <div class="blur-bg top-right"></div>
+            <h1>Understanding Climate Change & Global Warming</h1>
+            <p>Learn about the science, impacts, and solutions to climate change, and how we can all contribute to a sustainable future.</p>
+            <a href="#what-is-it" class="button">Explore More</a>
+            <div class="blur-bg bottom-left"></div>
+        </section>
+
+        <section id="what-is-it">
+            <h2>What is Climate Change?</h2>
+            <p>Climate change refers to long-term shifts in temperatures and weather patterns.  These shifts may be natural, such as through variations in the solar cycle. But since the 1800s, human activities have been the main driver of climate change, primarily due to burning fossil fuels (like coal, oil and gas) which produces heat-trapping greenhouse gases.</p>
+
+            <h3>Global Warming</h3>
+            <p>Global warming is the long-term heating of Earth's climate system observed since the pre-industrial period (between 1850 and 1900) due to human activities, primarily fossil fuel burning, which increases heat-trapping greenhouse gas levels in Earth's atmosphere. Global warming is just one aspect of climate change.</p>
+        </section>
+
+        <section id="causes">
+            <h2>What are the Causes?</h2>
+            <p>The primary cause of climate change is the increase in greenhouse gases in the atmosphere.  Here are some key contributors:</p>
+            <ul>
+                <li><b>Burning Fossil Fuels:</b> Coal, oil, and natural gas for energy production.</li>
+                <li><b>Deforestation:</b>  Trees absorb CO2; cutting them down releases it.</li>
+                <li><b>Agriculture:</b>  Livestock and fertilizers release methane and nitrous oxide.</li>
+                <li><b>Industrial Processes:</b> Manufacturing and chemical production release various greenhouse gases.</li>
+            </ul>
+        </section>
+
+        <section id="effects">
+            <h2>What are the Effects?</h2>
+            <p>Climate change is already having significant effects on our planet:</p>
+            <ul>
+                <li><b>Rising Temperatures:</b> Leading to heatwaves and extreme weather events.</li>
+                <li><b>Melting Glaciers and Ice Sheets:</b> Contributing to sea level rise.</li>
+                <li><b>Sea Level Rise:</b> Threatening coastal communities and ecosystems.</li>
+                <li><b>Ocean Acidification:</b> Harming marine life.</li>
+                <li><b>Changes in Precipitation Patterns:</b>  Leading to droughts and floods.</li>
+                <li><b>Increased Frequency of Extreme Weather Events:</b> Such as hurricanes, wildfires, and floods.</li>
+            </ul>
+        </section>
+
+        <section id="solutions">
+            <h2>What are the Solutions?</h2>
+            <p>We can still take action to mitigate climate change and build a sustainable future:</p>
+            <ul>
+                <li><b>Transition to Renewable Energy:</b> Solar, wind, hydro, and geothermal power.</li>
+                <li><b>Energy Efficiency:</b> Reducing energy consumption in homes, buildings, and transportation.</li>
+                <li><b>Sustainable Transportation:</b> Electric vehicles, public transportation, cycling, and walking.</li>
+                <li><b>Reforestation and Afforestation:</b> Planting trees to absorb CO2.</li>
+                <li><b>Sustainable Agriculture:</b> Reducing emissions from agriculture and promoting carbon sequestration.</li>
+                <li><b>Carbon Capture and Storage:</b> Technologies to capture CO2 from industrial sources and store it underground.</li>
+                <li><b>Policy and Advocacy:</b> Supporting policies that promote climate action.</li>
+                <li><b>Individual Actions:</b> Reducing your carbon footprint through conscious consumption and lifestyle choices.</li>
+            </ul>
+            <a href="file:///C:/Users/PROACT%20HP/Desktop/df.html" class="button" target="_blank">Take Action Now!</a>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 ClimateEdu. All rights reserved.</p>
+        <div class="social-container">
+            <a href="#" class="social-icon instagram"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#" class="social-icon twitter"><i class="fa-brands fa-x-twitter"></i></a>
+            <a href="#" class="social-icon linkedin"><i class="fa-brands fa-linkedin-in"></i></a>
+        </div>
+    </footer>
+
+    <script>
+        window.addEventListener('load', function() {
+            const preloader = document.getElementById('preloader');
+            preloader.classList.add('hidden');
+        });
+    </script>
+    <!-- Floating AI Button -->
+<style>
+  #xena-ai-widget {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 9999;
+  }
+
+  #xena-toggle-btn {
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, #4a90e2, #6bff7f);
+    border-radius: 50%;
+    border: none;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    cursor: pointer;
+    color: white;
+    font-size: 28px;
+  }
+
+  #xena-frame {
+    position: fixed;
+    bottom: 67px;
+    right: 20px;
+    width: 400px;
+    height: 600px;
+    border: none;
+    border-radius: 12px;
+    display: none;
+    z-index: 9998;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+  }
+
+  @media screen and (max-width: 480px) {
+    #xena-frame {
+      width: 90%;
+      height: 80%;
+      right: 5%;
+    }
+  }
+</style>
+
+<div id="xena-ai-widget">
+  <button id="xena-toggle-btn">🤖</button>
+</div>
+<iframe id="xena-frame" src="file:///C:/Users/PROACT%20HP/Desktop/WEB/xena.html" allow="clipboard-write"></iframe>
+
+<script>
+  const toggleBtn = document.getElementById("xena-toggle-btn");
+  const iframe = document.getElementById("xena-frame");
+
+  toggleBtn.addEventListener("click", () => {
+    iframe.style.display = iframe.style.display === "block" ? "none" : "block";
+  });
+</script>
+
+
+</body>
+</html>

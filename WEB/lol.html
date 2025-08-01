@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mobile Menu Demo</title>
+  <style>
+    body {
+      margin: 0;
+      background-color: #2c2c2c;
+      font-family: sans-serif;
+    }
+
+    .mobile-header {
+      position: fixed;
+      top: 0;
+      right: 0;
+      padding: 1rem;
+      z-index: 9999;
+      display: flex;
+      justify-content: flex-end;
+      width: 100%;
+      background-color: #2c2c2c;
+    }
+
+    .hamburger {
+      width: 40px;
+      height: 30px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      cursor: pointer;
+    }
+
+    .bar {
+      height: 6px;
+      background-color: #07f499;
+      border-radius: 3px;
+      transition: 0.3s;
+    }
+
+    .hamburger.open .bar:nth-child(1) {
+      transform: rotate(45deg) translate(6px, 6px);
+    }
+
+    .hamburger.open .bar:nth-child(2) {
+      opacity: 0;
+    }
+
+    .hamburger.open .bar:nth-child(3) {
+      transform: rotate(-45deg) translate(6px, -6px);
+    }
+
+    /* Mobile Menu Styles */
+    .mobile-menu {
+      position: fixed;
+      top: 60px;
+      right: 0;
+      width: 200px;
+      background-color: #1a1a1a;
+      color: #fff;
+      display: none;
+      flex-direction: column;
+      padding: 1rem;
+      z-index: 9998;
+    }
+
+    .mobile-menu a {
+      color: #07f499;
+      text-decoration: none;
+      margin: 10px 0;
+      font-size: 18px;
+    }
+
+    .mobile-menu.active {
+      display: flex;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="mobile-header">
+    <div class="hamburger" onclick="toggleMenu(this)">
+      <div class="bar"></div>
+      <div class="bar"></div>
+      <div class="bar"></div>
+    </div>
+  </div>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#home">Home</a>
+    <a href="#features">Features</a>
+    <a href="#about">About</a>
+    <a href="#contact">Contact</a>
+  </div>
+
+  <script>
+    function toggleMenu(hamburger) {
+      hamburger.classList.toggle('open');
+      const menu = document.getElementById('mobileMenu');
+      menu.classList.toggle('active');
+    }
+  </script>
+
+</body>
+</html>

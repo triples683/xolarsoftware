@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mental Health Awareness - Xolar Software</title>
+  <link rel="icon" type="image/x-icon" href="C:\Users\User\Documents\xolarx.png">
+  <link rel="stylesheet" href="styles.css">
+  <style>/* styles.css */
+    :root {
+      --text: hsl(0, 0%, 99%);
+      --textDim: hsl(0, 0%, 60%);
+      --background: hsl(0, 0%, 7%);
+      --primary: hsl(155, 100%, 65%);
+      --primaryBg: hsla(155, 100%, 65%, 1%);
+      --primaryHi: hsla(155, 100%, 75%, 25%);
+      --primaryFg: hsl(155, 100%, 85%);
+      --secondary: hsl(156, 51%, 14%);
+      --secondaryFg: hsl(156, 51%, 75%);
+      --secondaryBg: hsla(156, 51%, 14%, 5%);
+      --secondaryHi: hsla(156, 51%, 30%, 50%);
+      --accent: hsl(155, 100%, 94%);
+      --accentBg: hsla(155, 100%, 94%, 1%);
+      --accentHi: hsla(155, 100%, 100%, 25%);
+    }
+    
+    /* General Styles */
+    body {
+      font-family: 'Manrope', sans-serif;
+      font-weight: 400;
+      background-color: var(--background);
+      color: var(--text);
+      margin: 0;
+      padding: 0;
+    }
+    
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 10%;
+      color: var(--textDim);
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background-color: var(--background);
+      z-index: 1000;
+    }
+    
+    nav a {
+      margin: 0 1rem;
+      color: var(--textDim);
+      text-decoration: none;
+      font-size: 1.1rem;
+    }
+    
+    nav a:hover {
+      color: var(--text);
+    }
+    
+    .sitename {
+      font-weight: bold;
+      font-size: 1.5rem;
+    }
+    
+    section {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 5rem 2rem;
+    }
+    
+    #home {
+      text-align: center;
+    }
+    
+    #about, #contact, #mental-awareness {
+      text-align: center;
+    }
+    
+    h1, h2 {
+      font-size: 3rem;
+      color: var(--primary);
+    }
+    
+    h3 {
+      font-size: 2rem;
+      color: var(--primary);
+    }
+    
+    p {
+      font-size: 1.2rem;
+      color: var(--textDim);
+      max-width: 800px;
+      margin: 1rem auto;
+    }
+    
+    a.button {
+      display: inline-block;
+      padding: 0.75rem 1.5rem;
+      background-color: var(--primary);
+      color: var(--background);
+      text-decoration: none;
+      border-radius: 5px;
+      margin-top: 1rem;
+      transition: background-color 0.3s;
+    }
+    
+    a.button:hover {
+      background-color: var(--accent);
+    }
+    
+    ul {
+      list-style-type: none;
+      padding: 0;
+    }
+    
+    ul li {
+      font-size: 1.2rem;
+      color: var(--textDim);
+      margin: 0.5rem 0;
+    }
+    
+    footer {
+      text-align: center;
+      padding: 1rem;
+      background-color: var(--background);
+      color: var(--textDim);
+    }
+    
+    .blur-bg {
+      position: absolute;
+      width: 12rem;
+      height: 12rem;
+      border-radius: 50%;
+      filter: blur(100px);
+    }
+    
+    .top-right {
+      background-color: var(--primaryHi);
+      top: 10%;
+      right: 5%;
+    }
+    
+    .bottom-left {
+      background-color: var(--accentHi);
+      bottom: 10%;
+      left: 5%;
+    }
+    
+    /* Media Queries for Responsiveness */
+    @media (max-width: 768px) {
+      nav {
+        padding: 1rem;
+      }
+    
+      section {
+        padding: 3rem 1rem;
+      }
+    
+      h1, h2 {
+        font-size: 2.5rem;
+      }
+    
+      h3 {
+        font-size: 1.8rem;
+      }
+    
+      p {
+        font-size: 1rem;
+        padding: 0 10%;
+      }
+    
+      ul li {
+        font-size: 1rem;
+      }
+    }
+    </style>
+</head>
+<body>
+  
+  <div id="preloader">
+    <div class="preloader-content">X</div>
+  </div>
+  <style>
+    /* Preloader Styles */
+    #preloader {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgb(0, 0, 0); /* Dark background */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      opacity: 1;
+      visibility: visible;
+      transition: opacity 1s ease-out, visibility 1s ease-out;
+    }
+  
+    #preloader.hidden {
+      opacity: 0;
+      visibility: hidden;
+    }
+  
+    .preloader-content {
+      font-size: 5rem;
+      font-weight: bold;
+      color: palegreen; /* Pale green color for the "X" */
+      animation: pulse 2s infinite;
+    }
+  
+    /* Pulse animation for the "X" */
+    @keyframes pulse {
+      0%, 100% {
+        transform: scale(1);
+        opacity: 1;
+      }
+      50% {
+        transform: scale(1.2);
+        opacity: 0.7;
+      }
+    }
+  </style>
+  <script>
+    // Wait for the DOM to fully load
+    document.addEventListener("DOMContentLoaded", function () {
+      const preloader = document.getElementById("preloader");
+  
+      // Simulate content load delay (for demo purposes)
+      setTimeout(() => {
+        preloader.classList.add("hidden"); // Add the hidden class to fade out
+      }, 2000); // Adjust the timeout as needed
+    });
+  </script>
+  <nav>
+    
+    
+    <nav>
+        <span class="sitename">Xolar Software</span>
+        <a href="home page.html">Home</a>
+        <a href="Xena AI page.html">XenaAI</a>
+        <a href="Mental Awareness Page.html">Mental Awareness</a>
+        <a href="About page.html">About us</a>
+      </nav>
+
+  <section id="mental-awareness">
+    <img src="" alt="Logo" class="left-logo">
+    <style>.left-logo {
+      position: absolute;
+      top: 50%; /* Center vertically */
+      transform: translateY(-50%); /* Adjust for proper centering */
+      left: 50px; /* Adjust horizontal spacing */
+      width: 250px; /* Resize image to desired size */
+      height: auto; /* Maintain aspect ratio */
+      z-index: 1100; /* Ensure it appears above other elements */
+    }
+    </style>
+    <h2>Mental Health Awareness</h2>
+    <p>Mental health is an essential part of overall well-being, yet it is often overlooked. Awareness is crucial for understanding mental health disorders, supporting those in need, and reducing stigma. This page provides insights into mental health issues, why mental health matters, how to maintain mental wellness, and available resources for support.</p>
+
+    <!-- Why Mental Health Matters -->
+    <h3>Why Mental Health Matters</h3>
+    <p>Good mental health is not just the absence of mental illness, but the presence of positive mental well-being. Mental health influences how we think, feel, and act, affecting how we handle stress, relate to others, and make choices. When mental health is neglected, it can lead to serious consequences.</p>
+    
+    <ul>
+      <li><strong>Emotional Resilience:</strong> A stable mental state helps people navigate life's challenges and recover from stress.</li>
+      <li><strong>Better Relationships:</strong> Good mental health strengthens relationships with family, friends, and colleagues.</li>
+      <li><strong>Improved Productivity:</strong> Mental wellness leads to better focus, creativity, and productivity in daily tasks and at work.</li>
+      <li><strong>Prevention of Mental Disorders:</strong> Taking care of mental health can prevent or mitigate the development of serious conditions like anxiety and depression.</li>
+    </ul>
+
+    <!-- Common Mental Health Disorders -->
+    <h3>Common Mental Health Disorders</h3>
+    <p>Mental health disorders are more common than many people realize. They affect millions of individuals worldwide, regardless of age, gender, or social background. Here are some of the most common mental health conditions:</p>
+
+    <ul>
+      <li><strong>Depression:</strong> A mood disorder characterized by persistent feelings of sadness, hopelessness, and a loss of interest in activities once enjoyed.</li>
+      <li><strong>Anxiety Disorders:</strong> These include generalized anxiety disorder, panic disorder, and social anxiety disorder. Anxiety involves excessive worry, fear, or nervousness.</li>
+      <li><strong>Bipolar Disorder:</strong> A condition marked by extreme mood swings, including depressive episodes and manic episodes.</li>
+      <li><strong>Post-Traumatic Stress Disorder (PTSD):</strong> PTSD develops after experiencing or witnessing traumatic events, leading to flashbacks, nightmares, and severe anxiety.</li>
+      <li><strong>Obsessive-Compulsive Disorder (OCD):</strong> A condition characterized by unwanted repetitive thoughts (obsessions) and behaviors (compulsions) to relieve the anxiety caused by those thoughts.</li>
+      <li><strong>Eating Disorders:</strong> Disorders like anorexia nervosa, bulimia nervosa, and binge-eating disorder involve unhealthy eating habits, extreme concern about weight, and body image.</li>
+      <li><strong>Schizophrenia:</strong> A chronic mental disorder that affects how a person thinks, feels, and behaves, leading to hallucinations and delusions.</li>
+    </ul>
+
+    <!-- Risk Factors for Mental Health Disorders -->
+    <h3>Risk Factors for Mental Health Disorders</h3>
+    <p>Mental health disorders can develop for a variety of reasons. Some of the main risk factors include:</p>
+
+    <ul>
+      <li><strong>Genetics:</strong> Family history plays a role in the likelihood of developing mental health conditions.</li>
+      <li><strong>Trauma:</strong> Experiencing traumatic events such as abuse, accidents, or the loss of a loved one can trigger mental health issues.</li>
+      <li><strong>Substance Abuse:</strong> Alcohol and drug use are linked to the development and exacerbation of mental health disorders.</li>
+      <li><strong>Social Isolation:</strong> Lack of social support or connection with others can increase the risk of depression and anxiety.</li>
+      <li><strong>Chronic Stress:</strong> Ongoing stress from work, relationships, or financial difficulties can contribute to mental health problems.</li>
+      <li><strong>Chronic Illness:</strong> Long-term physical health conditions, such as diabetes or heart disease, can affect mental well-being.</li>
+    </ul>
+
+    <!-- Signs and Symptoms -->
+    <h3>Signs and Symptoms of Mental Health Issues</h3>
+    <p>Recognizing mental health problems early can lead to better outcomes. Some common signs include:</p>
+
+    <ul>
+      <li>Constant feelings of sadness, hopelessness, or guilt.</li>
+      <li>Extreme mood swings, irritability, or anger.</li>
+      <li>Withdrawal from social activities or loved ones.</li>
+      <li>Changes in eating or sleeping habits.</li>
+      <li>Difficulty concentrating, making decisions, or remembering things.</li>
+      <li>Physical symptoms such as headaches or stomachaches with no apparent cause.</li>
+      <li>Excessive worry, fear, or panic attacks.</li>
+      <li>Substance abuse or harmful coping mechanisms.</li>
+    </ul>
+
+    <!-- How to Support Mental Health -->
+    <h3>How to Support Mental Health</h3>
+    <p>Maintaining good mental health involves a combination of self-care, healthy habits, and seeking support when needed. Here are some strategies to promote mental well-being:</p>
+
+    <ul>
+      <li><strong>Practice Self-Care:</strong> Maintain a balanced diet, exercise regularly, get enough sleep, and manage stress through relaxation techniques like yoga or meditation.</li>
+      <li><strong>Seek Professional Help:</strong> Therapy, counseling, and medication can significantly improve mental health. It's okay to ask for help when feeling overwhelmed.</li>
+      <li><strong>Stay Connected:</strong> Maintain strong relationships with friends, family, and support groups. Social connections help reduce isolation and provide emotional support.</li>
+      <li><strong>Engage in Stress-Relieving Activities:</strong> Find activities that promote relaxation and joy, such as hobbies, creative outlets, or spending time in nature.</li>
+      <li><strong>Educate Yourself and Others:</strong> Learn about mental health, reduce stigma, and encourage open conversations to raise awareness in your community.</li>
+    </ul>
+
+    <!-- Resources -->
+    <h3>Resources for Mental Health Support</h3>
+    <p>If you or someone you know is struggling with mental health issues, there are many resources available for support:</p>
+
+    <ul>
+      <li><a href="https://www.who.int/mental_health/en/" target="_blank">World Health Organization (WHO) - Mental Health</a></li>
+      <li><a href="https://www.nimh.nih.gov/" target="_blank">National Institute of Mental Health (NIMH)</a></li>
+      <li><a href="https://www.mind.org.uk/" target="_blank">Mind (Mental Health Charity)</a></li>
+      <li><a href="https://www.samaritans.org/" target="_blank">Samaritans - 24/7 Helpline</a></li>
+      <li><a href="https://www.mentalhealth.gov/" target="_blank">MentalHealth.gov - U.S. Government Resources</a></li>
+      <li><a href="https://www.beyondblue.org.au/" target="_blank">Beyond Blue (Australia)</a></li>
+      <li><a href="https://www.psychologytoday.com/" target="_blank">Psychology Today - Find a Therapist</a></li>
+    </ul>
+
+    <!-- Call to Action -->
+    <h3>If You or Someone You Know Needs Help</h3>
+    <p>If you're in crisis or need immediate support, please don't hesitate to reach out to a professional or contact a helpline. Your mental health is important, and there is help available.</p>
+  </section>
+
+  <footer>
+    <p>© 2025 Xolar Software. All rights reserved.</p>
+  </footer>
+
+  <div class="blur-bg top-right"></div>
+  <div class="blur-bg bottom-left"></div>
+  <!-- Floating AI Button -->
+<style>
+  #xena-ai-widget {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 9999;
+  }
+
+  #xena-toggle-btn {
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, #4a90e2, #6bff7f);
+    border-radius: 50%;
+    border: none;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    cursor: pointer;
+    color: white;
+    font-size: 28px;
+  }
+
+  #xena-frame {
+    position: fixed;
+    bottom: 67px;
+    right: 20px;
+    width: 400px;
+    height: 600px;
+    border: none;
+    border-radius: 12px;
+    display: none;
+    z-index: 9998;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+  }
+
+  @media screen and (max-width: 480px) {
+    #xena-frame {
+      width: 90%;
+      height: 80%;
+      right: 5%;
+    }
+  }
+</style>
+
+<div id="xena-ai-widget">
+  <button id="xena-toggle-btn">🤖</button>
+</div>
+<iframe id="xena-frame" src="file:///C:/Users/PROACT%20HP/Desktop/WEB/xena.html" allow="clipboard-write"></iframe>
+<script>
+  const toggleBtn = document.getElementById("xena-toggle-btn");
+  const iframe = document.getElementById("xena-frame");
+
+  toggleBtn.addEventListener("click", () => {
+    iframe.style.display = iframe.style.display === "block" ? "none" : "block";
+  });
+</script>
+
+</body>
+</html>

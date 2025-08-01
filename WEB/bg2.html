@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Day/Night Toggle with Motion Gradient</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: sans-serif;
+      transition: background 0.5s ease-in-out;
+      background: linear-gradient(-45deg, #f0f0f0, #e0e0e0, #2e2a2a, #f0f0f0);
+      background-size: 400% 400%;
+      animation: dayGradient 15s ease infinite;
+    }
+
+    .dark-mode {
+      animation: nightGradient 15s ease infinite;
+    }
+
+    @keyframes dayGradient {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    @keyframes nightGradient {
+      0% { background-position: 0% 50%; background-color: #1c1c2b; }
+      50% { background-position: 100% 50%; background-color: #2a2a3d; }
+      100% { background-position: 0% 50%; background-color: #1c1c2b; }
+    }
+
+    .toggle-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .toggle-switch {
+      width: 120px;
+      height: 60px;
+      border-radius: 999px;
+      background: linear-gradient(to right, #87cefa, #b0e0e6);
+      box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
+      position: relative;
+      cursor: pointer;
+      transition: background 0.5s;
+    }
+
+    .toggle-thumb {
+      width: 48px;
+      height: 48px;
+      background: #FFD700;
+      border-radius: 50%;
+      position: absolute;
+      top: 6px;
+      left: 6px;
+      transition: all 0.4s ease;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      background-image: url('https://cdn-icons-png.flaticon.com/512/869/869869.png'); /* sun icon */
+      background-size: cover;
+      background-position: center;
+    }
+
+    .dark-mode .toggle-switch {
+      background: linear-gradient(to right, #2c3e50, #000000);
+    }
+
+    .dark-mode .toggle-thumb {
+      left: 66px;
+      background-image: url('https://cdn-icons-png.flaticon.com/512/747/747376.png'); /* moon icon */
+      background-color: #ddd;
+    }
+  </style>
+</head>
+<body>
+  <div class="toggle-container">
+    <div class="toggle-switch" onclick="toggleTheme()">
+      <div class="toggle-thumb"></div>
+    </div>
+  </div>
+
+  <script>
+    function toggleTheme() {
+      document.body.classList.toggle('dark-mode');
+    }
+  </script>
+</body>
+</html>

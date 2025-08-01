@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contact Us - Xolar Software</title>
+  <link rel="icon" type="image/x-icon" href="C:\Users\User\Documents\xolarx.png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+  <style>
+    :root {
+      --text: hsl(0, 0%, 99%);
+      --textDim: hsl(0, 0%, 60%);
+      --background: hsl(0, 0%, 7%);
+      --primary: hsl(155, 100%, 65%);
+      --primaryBg: hsla(155, 100%, 65%, 1%);
+      --primaryHi: hsla(155, 100%, 75%, 25%);
+      --primaryFg: hsl(155, 100%, 85%);
+      --secondary: hsl(156, 51%, 14%);
+      --secondaryFg: hsl(156, 51%, 75%);
+      --secondaryBg: hsla(156, 51%, 14%, 5%);
+      --secondaryHi: hsla(156, 51%, 30%, 50%);
+      --accent: hsl(155, 100%, 94%);
+      --accentBg: hsla(155, 100%, 94%, 1%);
+      --accentHi: hsla(155, 100%, 100%, 25%);
+    }
+
+    html, body {
+      height: 100%;
+    }
+
+    body {
+      display: flex;
+      flex-direction: column;
+      font-family: 'Manrope', sans-serif;
+      font-weight: 400;
+      background-color: var(--background);
+      color: var(--text);
+      margin: 0;
+      padding: 0;
+    }
+
+   
+
+
+    main {
+      flex: 1;
+      padding-top: 80px;
+    }
+
+    section {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 5rem 2rem;
+      text-align: center;
+    }
+
+    h1, h2 {
+      font-size: 3rem;
+      color: var(--primary);
+    }
+
+    h3 {
+      font-size: 2rem;
+      color: var(--primary);
+    }
+
+    p {
+      font-size: 1.2rem;
+      color: var(--textDim);
+      max-width: 800px;
+      margin: 1rem auto;
+    }
+
+    a.button {
+      display: inline-block;
+      padding: 0.75rem 1.5rem;
+      background-color: var(--primary);
+      color: var(--background);
+      text-decoration: none;
+      border-radius: 5px;
+      margin-top: 1rem;
+      transition: background-color 0.3s;
+    }
+
+    a.button:hover {
+      background-color: var(--accent);
+    }
+
+    ul {
+      list-style-type: none;
+      padding: 0;
+    }
+
+    ul li {
+      font-size: 1.2rem;
+      color: var(--textDim);
+      margin: 0.5rem 0;
+    }
+
+    footer {
+      text-align: center;
+      padding: 1rem;
+      background-color: var(--background);
+      color: var(--textDim);
+    }
+
+    .blur-bg {
+      position: absolute;
+      width: 12rem;
+      height: 12rem;
+      border-radius: 50%;
+      filter: blur(100px);
+    }
+
+    .top-right {
+      background-color: var(--primaryHi);
+      top: 10%;
+      right: 5%;
+    }
+
+    .bottom-left {
+      background-color: var(--accentHi);
+      bottom: 10%;
+      left: 5%;
+    }
+
+    /* Preloader Styles */
+    #preloader {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgb(0, 0, 0);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      opacity: 1;
+      visibility: visible;
+      transition: opacity 1s ease-out, visibility 1s ease-out;
+    }
+
+    #preloader.hidden {
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    .preloader-content {
+      font-size: 5rem;
+      font-weight: bold;
+      color: palegreen;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% {
+        transform: scale(1);
+        opacity: 1;
+      }
+      50% {
+        transform: scale(1.2);
+        opacity: 0.7;
+      }
+    }
+
+    .social-container {
+      display: flex;
+      gap: 30px;
+      justify-content: center;
+      margin: 2rem 0;
+    }
+
+    .social-icon {
+      width: 60px;
+      height: 60px;
+      background: #1e1e1e;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 50%;
+      transition: 0.4s ease;
+      font-size: 28px;
+      text-decoration: none;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+    }
+
+    .social-icon:hover {
+      transform: scale(1.15);
+    }
+
+    .social-icon.instagram:hover {
+      background: radial-gradient(circle at 30% 30%, #feda75, #d62976, #962fbf, #4f5bd5);
+    }
+
+    .social-icon.twitter:hover {
+      background: #1DA1F2;
+    }
+
+    .social-icon.linkedin:hover {
+      background: #0077b5;
+    }
+
+    @media (max-width: 768px) {
+      nav {
+        padding: 1rem;
+      }
+
+      section {
+        padding: 3rem 1rem;
+      }
+
+      h1, h2 {
+        font-size: 2.5rem;
+      }
+
+      h3 {
+        font-size: 1.8rem;
+      }
+
+      p {
+        font-size: 1rem;
+        padding: 0 10%;
+      }
+
+      ul li {
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div id="preloader">
+    <div class="preloader-content">X</div>
+  </div>
+  
+
+  <div class="mobile-header">
+    <div class="hamburger" onclick="toggleMenu(this)">
+      <div class="bar"></div>
+      <div class="bar"></div>
+      <div class="bar"></div>
+    </div>
+  </div>
+<div class="mobile-menu" id="mobileMenu">
+    <a href="file:///C:/Users/PROACT%20HP/Desktop/WEB/home.html">Home</a>
+    <a href="file:///C:/Users/PROACT%20HP/Desktop/WEB/xena.html">Xena AI</a>
+    <a href="file:///C:/Users/PROACT%20HP/Desktop/WEB/new%20translator.html">XT Translate</a>
+    <a href="file:///C:/Users/PROACT%20HP/Desktop/xred.html">Learningsection</a>
+    
+    <a href="">About</a>
+    <a href="file:///C:/Users/PROACT%20HP/Desktop/contactus.html">Contact</a>
+  </div>   
+  <style>
+    .mobile-header {
+      position: fixed;
+      top: 0;
+      right: 0;
+      padding: 1rem;
+      z-index: 9999;
+      display: flex;
+      justify-content: flex-end;
+      width: 100%;
+      background-color: #2c2c2c00;
+    }
+
+    .hamburger {
+      width: 40px;
+      height: 30px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      cursor: pointer;
+    }
+
+    .bar {
+      height: 10px;
+      background-color: #9cc4b1;
+      border-radius: 10px;
+      transition: 0.3s;
+    }
+
+    .hamburger.open .bar:nth-child(1) {
+      transform: rotate(45deg) translate(6px, 6px);
+    }
+
+    .hamburger.open .bar:nth-child(2) {
+      opacity: 0;
+    }
+
+    .hamburger.open .bar:nth-child(3) {
+      transform: rotate(-45deg) translate(6px, -6px);
+    }
+
+    /* Mobile Menu Styles */
+    .mobile-menu {
+      position: fixed;
+      top: 60px;
+      right: 0;
+      width: 200px;
+      background-color: #3aa87a2d;
+      color: #fff;
+      display: none;
+      flex-direction: column;
+      padding: 1rem;
+      z-index: 9998;
+    }
+
+.mobile-header {
+  position: fixed;
+  top: 0.75rem;
+  right: 1rem;
+  padding: 0.6rem 1rem;
+  z-index: 9999;
+  display: flex;
+  justify-content: flex-end;
+  width: auto;
+  background: rgba(255, 255, 255, 0);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: 16px;
+  box-shadow: 0 0 20px rgba(0, 255, 106, 0);
+}
+
+.hamburger .bar {
+  height: 4px;
+  background-color: #07f4b9;
+  border-radius: 5px;
+  transition: 0.3s;
+}
+
+.mobile-menu {
+  transition: all 0.3s ease-in-out;
+  border-radius: 0 0 12px 12px;
+}
+
+
+    .mobile-menu a {
+      color: #07f47e;
+      text-decoration: none;
+      margin: 10px 0;
+      font-size: 18px;
+    }
+
+    .mobile-menu.active {
+      display: flex;
+    }
+  </style>
+<script>
+     
+    function toggleMenu(hamburger) {
+      hamburger.classList.toggle('open');
+      const menu = document.getElementById('mobileMenu');
+      menu.classList.toggle('active');
+    }
+  </script>
+  <main>
+    <section id="contact">
+      <h2>Contact Us</h2>
+      <p>We'd love to hear from you! Feel free to reach out for inquiries, collaborations, or more information about our services.</p>
+
+      <h3>Contact Details</h3>
+      <p>Email: <a href="mailto:xolarsoftware@gmail.com" style="color: var(--primaryFg); text-decoration: none;">xolarsoftware@gmail.com</a></p>
+      <p>Phone: 0709000003</p>
+
+      <!-- Social Icons -->
+      <div class="social-container">
+        <a href="https://instagram.com/xolar_software" class="social-icon instagram" target="_blank">
+          <i class="fab fa-instagram"></i>
+        </a>
+        <a href="https://twitter.com/@XolarSoftware" class="social-icon twitter" target="_blank">
+          <i class="fab fa-twitter"></i>
+        </a>
+        <a href="https://www.linkedin.com/in/xolar-software-a92baa372/" class="social-icon linkedin" target="_blank">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+      </div>
+
+      <p>Address: 123 Xolar Avenue, Kampala City, Future (Located at Ndejje Senior Secondary School, Uganda)</p>
+
+      <h3>Find Us on the Map</h3>
+      <p>Our office is located at Ndejje Senior Secondary School, Uganda. Use the map below to get directions:</p>
+
+      <div style="position: relative; overflow: hidden; width: 100%; height: 400px;">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3989.5917472413425!2d32.47296807407174!3d0.6106147635078122!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x177c50e5e6f6c00d%3A0x6fe69f230fe503e3!2sNdejje%20Senior%20Secondary%20School!5e0!3m2!1sen!2sug!4v1737565500531!5m2!1sen!2sug" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2025 Xolar Software. All rights reserved.</p>
+  </footer>
+
+  <div class="blur-bg top-right"></div>
+  <div class="blur-bg bottom-left"></div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const preloader = document.getElementById("preloader");
+      setTimeout(() => {
+        preloader.classList.add("hidden");
+      }, 2000);
+    });
+  </script>
+  <!-- Floating AI Button -->
+<style>
+  #xena-ai-widget {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 9999;
+  }
+
+  #xena-toggle-btn {
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, #4a90e2, #6bff7f);
+    border-radius: 50%;
+    border: none;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    cursor: pointer;
+    color: white;
+    font-size: 28px;
+  }
+
+  #xena-frame {
+    position: fixed;
+    bottom: 67px;
+    right: 20px;
+    width: 400px;
+    height: 600px;
+    border: none;
+    border-radius: 12px;
+    display: none;
+    z-index: 9998;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+  }
+
+  @media screen and (max-width: 480px) {
+    #xena-frame {
+      width: 90%;
+      height: 80%;
+      right: 5%;
+    }
+  }
+</style>
+
+<div id="xena-ai-widget">
+  <button id="xena-toggle-btn">🤖</button>
+</div>
+<iframe id="xena-frame" src="file:///C:/Users/PROACT%20HP/Desktop/WEB/xena.html" allow="clipboard-write"></iframe>
+<script>
+  const toggleBtn = document.getElementById("xena-toggle-btn");
+  const iframe = document.getElementById("xena-frame");
+
+  toggleBtn.addEventListener("click", () => {
+    iframe.style.display = iframe.style.display === "block" ? "none" : "block";
+  });
+</script>
+
+</body>
+</html>

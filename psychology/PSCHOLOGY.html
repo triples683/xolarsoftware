@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8">  
+  <title>Xolar Translator</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+  <style>
+    :root {
+      --text: hsl(0, 0%, 100%);
+      --textDim: hsl(0, 0%, 60%);
+      --primary: hsl(155, 100%, 65%);
+      --primaryHi: hsla(155, 100%, 75%, 25%);
+      --accentHi: hsla(155, 100%, 100%, 25%);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(-45deg, #375241, #3b8d67, black, #80B192);
+      background-size: 400% 400%;
+      animation: gradientBG 15s ease infinite;
+      min-height: 100vh;
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    @keyframes gradientBG {
+      0% {background-position: 0% 50%;}
+      50% {background-position: 100% 50%;}
+      100% {background-position: 0% 50%;}
+    }
+
+    .loading-screen {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(-45deg, #0f0c29, #037942, #000000, #0e3b1c);
+      background-size: 400% 400%;
+      animation: gradientBG 8s ease infinite;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      color: #0f0;
+    }
+
+    .loading-screen img {
+      width: 150px;
+      animation: pulse 2s infinite ease-in-out;
+    }
+
+    .loading-text {
+      margin-top: 20px;
+      font-size: 1.5rem;
+      letter-spacing: 2px;
+    }
+
+    @keyframes pulse {
+      0%, 100% {
+        opacity: 0.6;
+        transform: scale(1);
+      }
+      50% {
+        opacity: 1;
+        transform: scale(1.1);
+      }
+    }
+
+    iframe {
+      width: 100%;
+      height: 100vh;
+      border: none;
+      z-index: 1;
+      position: relative;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- LOADING SCREEN -->
+  <div class="loading-screen" id="loader">
+    <img src="C:\Users\PROACT HP\Desktop\psy.png" alt="Loading..." />
+    <div class="loading-text"></div>
+  </div>
+
+  <!-- MAIN CONTENT -->
+<iframe class="scribd_iframe_embed" title="Psychology a Level Book" src="https://www.scribd.com/embeds/772515897/content?start_page=1&view_mode=scroll&access_key=key-RMmGTQRRj9sBuwKK1tfM" tabindex="0" data-auto-height="false" data-aspect-ratio="0.8070953436807096" scrolling="no" width="12000" height="16000" frameborder="0" ></iframe> <p style="margin: 12px auto 6px auto; font-family: Helvetica,Arial,Sans-serif; font-size: 14px; line-height: normal; display: block;"> <a title="View Psychology a Level Book on Scribd" href="https://www.scribd.com/document/772515897/Psychology-a-Level-Book#from_embed" style="color: #098642; text-decoration: underline;"> Psychology a Level Book </a> by <a title="View hibye252525hibye's profile on Scribd" href="https://www.scribd.com/user/787936897/hibye252525hibye#from_embed" style="color: #098642; text-decoration: underline;" > hibye252525hibye </a> </p> 
+
+
+  <script>
+    // Hide loading screen when content is ready
+    window.addEventListener("load", function () {
+      const loader = document.getElementById("loader");
+      loader.style.display = "none";
+    });
+  </script>
+<!-- Floating AI Button -->
+<style>
+  #xena-ai-widget {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 9999;
+  }
+
+  #xena-toggle-btn {
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, #4a90e2, #6bff7f);
+    border-radius: 50%;
+    border: none;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    cursor: pointer;
+    color: white;
+    font-size: 28px;
+  }
+
+  #xena-frame {
+    position: fixed;
+    bottom: 67px;
+    right: 20px;
+    width: 400px;
+    height: 600px;
+    border: none;
+    border-radius: 12px;
+    display: none;
+    z-index: 9998;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+  }
+
+  @media screen and (max-width: 480px) {
+    #xena-frame {
+      width: 90%;
+      height: 80%;
+      right: 5%;
+    }
+  }
+</style>
+
+<div id="xena-ai-widget">
+  <button id="xena-toggle-btn">🤖</button>
+</div>
+<iframe id="xena-frame" src="xena.html" allow="clipboard-write"></iframe>
+
+<script>
+  const toggleBtn = document.getElementById("xena-toggle-btn");
+  const iframe = document.getElementById("xena-frame");
+
+  toggleBtn.addEventListener("click", () => {
+    iframe.style.display = iframe.style.display === "block" ? "none" : "block";
+  });
+</script>
+
+</body>
+</html>

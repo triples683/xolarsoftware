@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Gradient Carousel</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=League+Gothic&display=swap');
+
+    :root {
+      --w-column: 200px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    body {
+      font-family: Poppins, sans-serif;
+      font-size: 15px;
+      background: linear-gradient(-45deg, #2b2e4f, #1e1e3f, #111126, #0c0c1f);
+      background-size: 400% 400%;
+      animation: gradientMotion 15s ease infinite;
+      color: #fff;
+    }
+
+    @keyframes gradientMotion {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    header {
+      position: fixed;
+      z-index: 10;
+      width: min(1200px, 90vw);
+      height: 70px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 1rem;
+    }
+
+    .logo img {
+      width: 50px;
+    }
+
+    nav ul {
+      display: flex;
+      gap: 1rem;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: white;
+      font-weight: 500;
+    }
+
+    .hamburger {
+      width: 40px;
+      height: 30px;
+      display: none;
+      flex-direction: column;
+      justify-content: space-between;
+      cursor: pointer;
+    }
+
+    .bar {
+      height: 6px;
+      background-color: #07f499;
+      border-radius: 3px;
+      transition: 0.3s;
+    }
+
+    .hamburger.open .bar:nth-child(1) {
+      transform: rotate(45deg) translate(6px, 6px);
+    }
+
+    .hamburger.open .bar:nth-child(2) {
+      opacity: 0;
+    }
+
+    .hamburger.open .bar:nth-child(3) {
+      transform: rotate(-45deg) translate(6px, -6px);
+    }
+
+    @media (max-width: 768px) {
+      nav ul {
+        display: none;
+        position: absolute;
+        top: 70px;
+        right: 10px;
+        background-color: #1e1e3f;
+        padding: 1rem;
+        border-radius: 10px;
+        flex-direction: column;
+      }
+
+      nav ul.show {
+        display: flex;
+      }
+
+      .hamburger {
+        display: flex;
+      }
+    }
+
+    .carousel {
+      height: 100vh;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .list {
+      width: min(1200px, 90vw);
+      margin: auto;
+      height: 100%;
+      position: relative;
+    }
+
+    .item {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 2rem;
+      opacity: 0;
+      transition: 0.5s;
+    }
+
+    .item.active {
+      opacity: 1;
+    }
+
+    .item figure img {
+      width: 300px;
+      transform: rotate(-20deg);
+    }
+
+    .content {
+      display: flex;
+      flex-direction: column;
+      align-items: end;
+      gap: 1rem;
+    }
+
+    .content h2 {
+      font-family: 'League Gothic', sans-serif;
+      font-size: 5em;
+    }
+
+    .more {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .more button {
+      padding: 0.5rem 1rem;
+      font-family: 'League Gothic';
+      font-size: 1em;
+      border-radius: 20px;
+      cursor: pointer;
+      border: none;
+    }
+
+    .more button:first-child {
+      background: linear-gradient(to right, #81baa0, #46a39c);
+      color: white;
+    }
+
+    .more button:last-child {
+      background: none;
+      border: 2px solid #81baa0;
+      color: #81baa0;
+    }
+
+    .arrows, .indicators {
+      position: absolute;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 2;
+      padding: 0 2rem;
+    }
+
+    .arrows button {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      border: 1px solid #659cdf;
+      background-color: #232442;
+      color: #fff;
+      font-size: 1.5em;
+      cursor: pointer;
+    }
+
+    .indicators {
+      top: auto;
+      bottom: 20px;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .indicators li {
+      width: 15px;
+      height: 15px;
+      background: #659cdf;
+      border-radius: 50%;
+      cursor: pointer;
+    }
+
+    .indicators li.active {
+      background: yellow;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <figure class="logo">
+      <img src="img/logo.png" alt="Logo"/>
+    </figure>
+
+    <nav>
+      <div class="hamburger" id="hamburger">
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+      </div>
+      <ul id="menu">
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Xena AI</a></li>
+        <li><a href="#">Mental Awareness</a></li>
+        <li><a href="#">About us</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="carousel">
+    <div class="list">
+      <div class="item active">
+        <figure><img src="img/3.png" alt="Mental Awareness"/></figure>
+        <div class="content">
+          <p class="category">MentalHealth</p>
+          <h2>Mental Awareness</h2>
+          <p class="description">Know your current mental state and seek help. With Xena around you, you're good to go!</p>
+          <div class="more">
+            <button>Help</button>
+            <button><i class="fa-solid fa-play"></i> See More</button>
+          </div>
+        </div>
+      </div>
+      <div class="item">
+        <figure><img src="img/store.png" alt="Store"/></figure>
+        <div class="content">
+          <p class="category">Store</p>
+          <h2>Shop with us!</h2>
+          <p class="description">Get amazing tech & gadgets curated just for you with futuristic style.</p>
+          <div class="more">
+            <button>Add To Cart</button>
+            <button><i class="fa-solid fa-play"></i> See More</button>
+          </div>
+        </div>
+      </div>
+      <div class="item">
+        <figure><img src="img/xena.png" alt="Xena AI"/></figure>
+        <div class="content">
+          <p class="category">Xena</p>
+          <h2>Xena AI</h2>
+          <p class="description">Have a futuristic experience with Xena AI. Your #1 companion and tutor.</p>
+          <div class="more">
+            <button>Home</button>
+            <button><i class="fa-solid fa-play"></i> Xena AI</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="arrows">
+      <button id="prev"><i class="fa-solid fa-chevron-left"></i></button>
+      <button id="next"><i class="fa-solid fa-chevron-right"></i></button>
+    </div>
+
+    <ul class="indicators">
+      <li class="active"></li>
+      <li></li>
+      <li></li>
+    </ul>
+  </section>
+
+  <script>
+    const items = document.querySelectorAll('.item');
+    const indicators = document.querySelectorAll('.indicators li');
+    const next = document.getElementById('next');
+    const prev = document.getElementById('prev');
+    const hamburger = document.getElementById('hamburger');
+    const menu = document.getElementById('menu');
+    let index = 0;
+    let interval = setInterval(() => next.click(), 6000);
+
+    function updateCarousel(dir) {
+      items[index].classList.remove('active');
+      indicators[index].classList.remove('active');
+      index = (dir === 'next') ? (index + 1) % items.length : (index - 1 + items.length) % items.length;
+      items[index].classList.add('active');
+      indicators[index].classList.add('active');
+      clearInterval(interval);
+      interval = setInterval(() => next.click(), 6000);
+    }
+
+    next.onclick = () => updateCarousel('next');
+    prev.onclick = () => updateCarousel('prev');
+    indicators.forEach((dot, i) => {
+      dot.onclick = () => {
+        items[index].classList.remove('active');
+        indicators[index].classList.remove('active');
+        index = i;
+        items[index].classList.add('active');
+        indicators[index].classList.add('active');
+      };
+    });
+
+    hamburger.onclick = () => {
+      hamburger.classList.toggle('open');
+      menu.classList.toggle('show');
+    };
+  </script>
+</body>
+</html>

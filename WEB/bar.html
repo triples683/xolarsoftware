@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Three Dash Navigation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Navigation container */
+        nav {
+            background-color: #333;
+            padding: 10px;
+        }
+
+        /* Three Dash Hamburger Icon */
+        .hamburger {
+            width: 30px;
+            height: 25px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            cursor: pointer;
+        }
+
+        .hamburger div {
+            width: 30px;
+            height: 5px;
+            background-color: white;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+
+        /* Menu links */
+        .menu {
+            display: none;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .menu li {
+            padding: 10px;
+            text-align: center;
+        }
+
+        .menu li a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+        }
+
+        .menu li a:hover {
+            background-color: #575757;
+        }
+
+        /* Menu visible when hamburger is clicked */
+        .hamburger.open div:nth-child(1) {
+            transform: rotate(45deg) translateY(10px);
+        }
+
+        .hamburger.open div:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.open div:nth-child(3) {
+            transform: rotate(-45deg) translateY(-10px);
+        }
+
+        .hamburger.open + .menu {
+            display: block;
+        }
+
+        /* Media query for mobile */
+        @media (min-width: 768px) {
+            .hamburger {
+                display: none;
+            }
+
+            .menu {
+                display: flex;
+                justify-content: space-around;
+            }
+
+            .menu li {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <!-- Three Dash Hamburger Icon -->
+        <div class="hamburger" onclick="toggleMenu()">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+
+        <!-- Navigation Menu -->
+        <ul class="menu">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <script>
+        // Toggle the 'open' class on the hamburger and menu
+        function toggleMenu() {
+            var hamburger = document.querySelector('.hamburger');
+            var menu = document.querySelector('.menu');
+            hamburger.classList.toggle('open');
+            menu.classList.toggle('open');
+        }
+    </script>
+
+</body>
+</html>

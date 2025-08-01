@@ -1,0 +1,889 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home - Xolar Software</title>
+  <style>
+
+    .banner{
+        width: 100%;
+        height: 100vh;
+        text-align: center;
+        overflow: hidden;
+        position: relative;
+    }
+    .banner .slider{
+        position: absolute;
+        width: 200px;
+        height: 250px;
+        top: 10%;
+        left: calc(50% - 100px);
+        transform-style: preserve-3d;
+        transform: perspective(1000px);
+        animation: autoRun 20s linear infinite;
+        z-index: 2;
+    }
+    
+    @keyframes autoRun{
+        from{
+            transform: perspective(1000px) rotateX(-16deg) rotateY(0deg);
+        }to{
+            transform: perspective(1000px) rotateX(-16deg) rotateY(360deg);
+        }
+    }
+    
+    .banner .slider .item{
+        position: absolute;
+        inset: 0 0 0 0;
+        transform: 
+            rotateY(calc( (var(--position) - 1) * (360 / var(--quantity)) * 1deg))
+            translateZ(550px);
+    }
+    .banner .slider .item img{
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+    .banner .content{
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: min(1400px, 100vw);
+        height: max-content;
+        padding-bottom: 100px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: center;
+        z-index: 1;
+    }
+    .banner .content h1{
+        font-family: 'ICA Rubrik';
+        font-size: 16em;
+        line-height: 1em;
+        color: #25283B;
+        position: relative;
+    }
+    .banner .content h1::after{
+        position: absolute;
+        inset: 0 0 0 0;
+        content: attr(data-content);
+        z-index: 2;
+        -webkit-text-stroke: 2px #d2d2d2;
+        color: transparent;
+    }
+    .banner .content .author{
+        font-family: Poppins;
+        text-align: right;
+        max-width: 200px;
+    }
+    .banner .content h2{
+        font-size: 3em;
+    }
+    .banner .content .model{
+      background-image:url();
+        width: 100%;
+        height: 75vh;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        background-size: auto 130%;
+        background-repeat: no-repeat;
+        background-position: top center;
+        z-index: 1;
+    }
+    @media screen and (max-width: 1023px) {
+        .banner .slider{
+            width: 160px;
+            height: 200px;
+            left: calc(50% - 80px);
+        }
+        .banner .slider .item{
+            transform: 
+                rotateY(calc( (var(--position) - 1) * (360 / var(--quantity)) * 1deg))
+                translateZ(300px);
+        }
+        .banner .content h1{
+            text-align: center;
+            width: 100%;
+            text-shadow: 0 10px 20px #000;
+            font-size: 7em;
+        }
+        .banner .content .author{
+            color: #fff;
+            padding: 20px;
+            text-shadow: 0 10px 20px #000;
+            z-index: 2;
+            max-width: unset;
+            width: 100%;
+            text-align: center;
+            padding: 0 30px;
+        }
+    }
+    @media screen and (max-width: 767px) {
+        .banner .slider{
+            width: 100px;
+            height: 150px;
+            left: calc(50% - 50px);
+        }
+        .banner .slider .item{
+            transform: 
+                rotateY(calc( (var(--position) - 1) * (360 / var(--quantity)) * 1deg))
+                translateZ(180px);
+        }
+        .banner .content h1{
+            font-size: 5em;
+        }
+    }
+    </style>
+        <style>
+          
+            
+            *{
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+            body{
+                background-color: #e900af;
+                background-image:
+                repeating-linear-gradient(
+                    to right, transparent 0 100px,
+                    #25283b22 100px 101px
+                ),
+                repeating-linear-gradient(
+                    to bottom, transparent 0 100px,
+                    #25283b22 100px 101px
+                );
+            }
+            
+            body::before{
+                position: absolute;
+                width: min(1400px, 90vw);
+                top: 10%;
+                left: 50%;
+                height: 90%;
+                transform: translateX(-50%);
+                content: '';
+                background-image: url(images/bg.png);
+                background-size: 100%;
+                background-repeat: no-repeat;
+                background-position: top center;
+                pointer-events: none;
+            }
+        </style>
+  <link rel="icon" type="image/x-icon" href="C:\Users\PROACT HP\Downloads\Exchange_Logo-removebg-preview.png">
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+
+  
+  <style>/* styles.css */
+    :root {
+      --text: hsl(0, 0%, 100%);
+      --textDim: hsl(0, 0%, 60%);
+      --background: hsla(0, 0%, 5%, 0.76);
+      --primary: hsl(155, 100%, 65%);
+      --primaryBg: hsla(155, 100%, 65%, 0.103);
+      --primaryHi: hsla(155, 100%, 75%, 25%);
+      --primaryFg: hsl(155, 100%, 85%);
+      --secondary: hsl(156, 51%, 14%);
+      --secondaryFg: hsl(156, 51%, 75%);
+      --secondaryBg: hsla(156, 51%, 14%, 5%);
+      --secondaryHi: hsla(156, 51%, 30%, 50%);
+      --accent: hsl(155, 46%, 48%);
+      --accentBg: hsla(0, 0%, 47%, 0);
+      --accentHi: hsla(155, 100%, 100%, 25%);
+    }
+    
+
+    body {
+      margin: 0;
+      background-color: #2c2c2c38;
+      font-family: sans-serif;
+    }
+
+   
+  </style>
+  <style>
+    /* Add styles for the grid slideshow */
+    #slideshow {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+
+    #slideshow img {
+      width: 100%;
+      height: auto;
+      border-radius: 10px;
+      transition: transform 0.3s ease;
+    }
+
+    #slideshow img:hover {
+      transform: scale(1.1);
+    }
+
+    /* Style for the falling green numbers effect */
+    #falling-numbers {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100vh;
+      overflow: hidden;
+      pointer-events: none;
+      z-index: 10;
+    }
+
+    .falling-number {
+      position: absolute;
+      top: -10px;
+      color: #27af77;
+      font-family: monospace;
+      font-size: 2rem;
+      animation: fall 5s infinite linear;
+      opacity: 0;
+      text-shadow: 0 0 5px rgba(0, 255, 0, 0.8), 0 0 10px rgba(0, 255, 0, 0.6), 0 0 15px rgba(0, 255, 0, 0.4); /* Trail effect */
+    }
+
+    @keyframes fall {
+      to {
+        transform: translateY(100vh);
+        opacity: 1;
+      }
+    }
+
+  </style>
+</head>
+<body>
+  <div id="preloader">
+    <div class="preloader-content"><img src="C:\Users\PROACT HP\Downloads\ChatGPT Image Jun 27, 2025, 02_18_19 AM.png"></div></div>
+  </div>
+  <script>
+    AOS.init({
+      duration: 1000, // Animation duration in milliseconds
+      easing: 'ease-out-cubic', // Easing style
+      once: true, // Animation runs only once
+    });
+  </script>
+  
+  <style>
+    /* Preloader Styles */
+    #preloader {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgb(0, 0, 0); /* Dark background */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      opacity: 1;
+      visibility: visible;
+      transition: opacity 1s ease-out, visibility 1s ease-out;
+    }
+  
+    #preloader.hidden {
+      opacity: 0;
+      visibility: hidden;
+    }
+  
+    .preloader-content {
+      font-size: 5rem;
+      font-weight: bold;
+      color: palegreen; /* Pale green color for the "X" */
+      animation: pulse 2s infinite;
+    }
+  
+    /* Pulse animation for the "X" */
+    @keyframes pulse {
+      0%, 100% {
+        transform: scale(1);
+        opacity: 1;
+      }
+      50% {
+        transform: scale(1.2);
+        opacity: 0.7;
+      }
+    }
+  </style>
+  <script>
+    // Wait for the DOM to fully load
+    document.addEventListener("DOMContentLoaded", function () {
+      const preloader = document.getElementById("preloader");
+  
+      // Simulate content load delay (for demo purposes)
+      setTimeout(() => {
+        preloader.classList.add("hidden"); // Add the hidden class to fade out
+      }, 2000); // Adjust the timeout as needed
+    });
+  </script>
+  
+  <nav>
+    <span class="sitename">Xolar Software</span>
+    <a href="home page.html"></a>
+    <a href="XenaAI page.html"></a>
+    <a href="Mental Awareness page.html"></a>
+    <a href="About page.html"></a>
+  </nav>
+
+  <section id="home" data-aos="fade-up">
+      <div>
+        <h2>XOLAR SOFTWARE</h2>
+        <h1>Empowering Innovation Through AI</h1>
+        <p>Discover how Xolar Software is transforming industries and creating intelligent solutions to preserve the environment and tackle key aspects the current generation.</p>
+        <a href="file:///C:/Users/PROACT%20HP/Desktop/WEB/xena.html" class="button">XenaAI</a>
+      </div>
+  
+  
+  
+
+      <div class="banner">
+        <div class="slider" style="--quantity: 10">
+            <div class="item" style="--position: 1"><img src="brain1.jpg" alt="download"></div>
+            <div class="item" style="--position: 2"><img src="learn.jpg" alt="download"></div>
+            <div class="item" style="--position: 3"><img src="C:\Users\PROACT HP\Downloads\hud futuristic animation -AI generation.jpg" alt="download"></div>
+            <div class="item" style="--position: 4"><img src="C:\Users\PROACT HP\Downloads\Futuristic Helmet – Graphic Design.jpg" alt="Viktoria"></div>
+            <div class="item" style="--position: 5"><img src="C:\Users\PROACT HP\Downloads\hud futuristic animation -AI generation (4).jpg" alt=""></div>
+            <div class="item" style="--position: 6"><img src="tech.jpg" alt="antique"></div>
+            <div class="item" style="--position: 7"><img src="download.jpg" alt="antique"></div>
+            <div class="item" style="--position: 8"><img src="C:\Users\PROACT HP\Downloads\hud futuristic animation -AI generation (3).jpg" alt="woman"></div>
+            <div class="item" style="--position: 9"><img src="C:\Users\PROACT HP\Desktop\WEB\study.jpg" alt="download"></div>
+            <div class="item" style="--position: 10"><img src="C:\Users\PROACT HP\Downloads\3d animation world rooted.jpg" alt=""></div>
+        </div>
+
+    <!-- 3D Falling Numbers -->
+    <div id="falling-numbers"></div>
+
+  </section>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Xena AI - Xolar Software</title>
+  <link rel="stylesheet" href="styles.css">
+
+  <style>/* styles.css */
+    :root {
+      --text: hsl(155, 100%, 65%);
+      --textDim: hsl(0, 0%, 54%);
+      --background: hsl(0, 0%, 6%);
+      --primary: hsl(155, 100%, 65%);
+      --primaryBg: hsla(155, 100%, 65%, 1%);
+      --primaryHi: hsla(155, 100%, 75%, 25%);
+      --primaryFg: hsl(155, 100%, 85%);
+      --secondary: hsl(156, 51%, 14%);
+      --secondaryFg: hsl(156, 51%, 75%);
+      --secondaryBg: hsla(156, 52%, 14%, 0.137);
+      --secondaryHi: hsla(156, 51%, 30%, 50%);
+      --accent: hsl(155, 100%, 94%);
+      --accentBg: hsla(0, 0%, 0%, 0);
+      --accentHi: hsla(155, 100%, 100%, 25%);
+    }
+    
+    /* General Styles */
+    body {
+      font-family: 'Manrope', sans-serif;
+      font-weight: 400;
+      background-color: var(--background);
+      color: var(--text);
+      margin: 0;
+      padding: 0;
+    }
+    
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 10%;
+      color: var(--textDim);
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background-color: var(--background);
+      z-index: 1000;
+    }
+    
+    nav a {
+      margin: 0 1rem;
+      color: var(--textDim);
+      text-decoration: none;
+      font-size: 1.1rem;
+    }
+    
+    nav a:hover {
+      color: var(--text);
+    }
+    
+    .sitename {
+      font-weight: bold;
+      font-size: 1.5rem;
+    }
+    
+    section {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 5rem 2rem;
+    }
+    
+    #xena-ai {
+      text-align: center;
+    }
+    
+    h1, h2 {
+      font-size: 3rem;
+      color: var(--primary);
+    }
+    
+    h3 {
+      font-size: 2rem;
+      color: var(--primary);
+    }
+    
+    p {
+      font-size: 1.2rem;
+      color: var(--textDim);
+      max-width: 800px;
+      margin: 1rem auto;
+    }
+    
+    a.button {
+      display: inline-block;
+      padding: 0.75rem 1.5rem;
+      background-color: var(--primary);
+      color: var(--background);
+      text-decoration: none;
+      border-radius: 5px;
+      margin-top: 1rem;
+      transition: background-color 0.3s;
+    }
+    
+    a.button:hover {
+      background-color: var(--accent);
+    }
+    
+    ul {
+      list-style-type: none;
+      padding: 0;
+    }
+    
+    ul li {
+      font-size: 1.2rem;
+      color: var(--textDim);
+      margin: 0.5rem 0;
+    }
+    
+    footer {
+      text-align: center;
+      padding: 1rem;
+      background-color: var(--background);
+      color: var(--textDim);
+    }
+    
+    .blur-bg {
+      position: absolute;
+      width: 12rem;
+      height: 12rem;
+      border-radius: 50%;
+      filter: blur(100px);
+    }
+    
+    .top-right {
+      background-color: var(--primaryHi);
+      top: 10%;
+      right: 5%;
+    }
+    
+    .bottom-left {
+      background-color: var(--accentHi);
+      bottom: 10%;
+      left: 5%;
+    }
+    
+    /* Media Queries for Responsiveness */
+    @media (max-width: 768px) {
+      nav {
+        padding: 1rem;
+      }
+    
+      section {
+        padding: 3rem 1rem;
+      }
+    
+      h1, h2 {
+        font-size: 2.5rem;
+      }
+    
+      h3 {
+        font-size: 1.8rem;
+      }
+    
+      p {
+        font-size: 1rem;
+        padding: 0 10%;
+      }
+    
+      ul li {
+        font-size: 1rem;
+      }
+    }
+  </style>
+  <style>/* styles.css */ 
+    #slideshow {
+  display: block;
+  position: relative; /* For absolute positioning of the images */
+  width: 100%;
+  height: 100vh; /* Full viewport height */
+  margin-top: 2rem;
+}
+
+#slideshow img {
+  width: 150px; /* Image size */
+  height: auto;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 0 10px 5px rgba(152, 255, 152, 0.5); /* Pale green padding */
+  position: absolute;
+  transition: transform 0.3s ease;
+}
+
+#slideshow img:hover {
+  transform: scale(1.1);
+}
+
+/* Create X formation using absolute positioning */
+#slideshow img:nth-child(1) {
+  top: 5%;
+  left: 5%;
+}
+
+#slideshow img:nth-child(2) {
+  top: 5%;
+  right: 5%;
+}
+
+#slideshow img:nth-child(3) {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(45deg); /* Center image at the cross of the X */
+}
+
+#slideshow img:nth-child(4) {
+  bottom: 5%;
+  left: 5%;
+}
+
+#slideshow img:nth-child(5) {
+  bottom: 5%;
+  right: 5%;
+}
+
+#slideshow img:nth-child(6) {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(-45deg); /* Rotate opposite to the center image */
+}
+
+  </style>
+<style>#slideshow img {
+  width: 345px; /* Increased image size */
+  height: auto;
+  border-radius: 20px;
+  padding: 30px;
+  box-shadow: 0 0 20px 7px rgba(122, 168, 122, 0.5); /* Slightly larger pale green padding */
+  position: absolute;
+  transition: transform 0.3s ease;
+}
+
+#slideshow img:hover {
+  transform: scale(1.1);
+}
+.background-text {
+            position: absolute;
+            top: 95px;
+            left: 90%;
+            transform: translateX(-50%);
+            font-size: 80px;
+            font-weight: 700;
+            opacity: 0.1;
+            color: white;
+            z-index: -1;
+        }
+
+</style>
+</head>
+<body>
+  <div class="background-text">XR</div>
+  
+    
+
+  <section id="xolar-software">
+    <h2>Xena AI - The Future of Intelligent Solutions</h2>
+    <p>Xena AI is the next step in the evolution of artificial intelligence and machine learning. Developed by Xolar Software, Xena is designed to bring powerful, adaptive, and intelligent solutions to businesses across all industries. With its ability to automate tasks, predict trends, and enhance decision-making, Xena AI is transforming the way businesses operate, from small startups to large enterprises.</p>
+
+    <h3> Learning section</h3>
+    <p>XR ED is an online platform created by Xolar software in order to create an aware generation that is well capable to combate climate change,  provide education services to people all around the world. this is evidenced by a large variety of subjects offered for both O and A level, join in now and create a learning experience any where in your own convinience.</p>
+
+    <h3>.Xolar translate.</h3>
+    <p>Have you ever been there and communication fails due to language barrier, have you ever wanted to sensitise people around the world about the dangers of climate change but the language is the problem, well, Xolar translate has got you covered! Talk to anyone and casually interact with people around the world spreading the good news about ways of fighting climate change</p>
+
+    <h3>XenaAI</h3>
+    <p>XenaAI, what a beautiful masterpiece you are. You see, THis AI is not like any other found around. This is an artificial inteligence specifically built to offer mental health services to people, offer guidance and counselling, provide articles and spreads awareness about the rising effects of climate change and ways to over come them, it can help you in your home work and lastly, it can help to give you statistics needed to make a good online trade<p>
+    </p>
+    <h3>Features of Xena AI</h3>
+    <ul>
+      <li><strong>AI Automation:</strong> Automate repetitive tasks and workflows, freeing up valuable time for your team to focus on strategic initiatives.</li>
+      <li><strong>Predictive Analytics:</strong> Leverage machine learning to forecast trends, customer behavior, and business performance.</li>
+      <li><strong>Personalized Recommendations:</strong> Xena provides customized solutions for each user, ensuring the most relevant insights and actions.</li>
+      <li><strong>Real-time Adaptation:</strong> Xena learns and adapts to your business environment, continuously optimizing processes for maximum efficiency.</li>
+      <li><strong>Seamless Integration:</strong> Easily integrate Xena AI with your existing software systems and platforms to enhance your current technology stack.</li>
+    </ul>
+
+    <h3>How Xena AI Can Benefit Your Business</h3>
+    <p>By implementing Xena AI, businesses can expect to see tangible improvements in the following areas:</p>
+    <ul>
+      <li><strong>Increased Efficiency:</strong> Automate mundane tasks, reduce errors, and enhance productivity across departments.</li>
+      <li><strong>Smarter Decision Making:</strong> Make data-driven decisions with real-time insights that help you stay ahead of the competition.</li>
+      <li><strong>Improved Customer Experiences:</strong> Deliver personalized interactions and services based on customer data and behavior analysis.</li>
+      <li><strong>Cost Savings:</strong> Streamline operations and reduce operational costs through intelligent automation and optimization.</li>
+    </ul>
+
+    <h3>Our Commitment to Innovation</h3>
+    <p>At Xolar Software, we believe that AI is the key to unlocking the future of business. That’s why we’re constantly evolving Xena AI to meet the ever-changing needs of the marketplace. Our team is dedicated to integrating the latest advancements in AI, machine learning, and deep learning to provide solutions that create real value and deliver measurable results.</p>
+
+    <h3>Get Started with Xena AI Today</h3>
+    <p>Discover how Xena AI can help your business evolve and grow. Contact us today to learn more or schedule a demo.</p>
+    <a href="file:///C:/Users/PROACT%20HP/Desktop/contactus.html" class="button">Contact Us</a>
+
+  </section>
+
+
+  <footer>
+    <p>© 2025 Xolar Software. All rights reserved.</p>
+  </footer>
+
+  <div class="blur-bg top-right"></div>
+  <div class="blur-bg bottom-left"></div>
+
+  <script>
+    // Create the falling green numbers effect with trail
+    function generateFallingNumbers() {
+      const fallingNumbersContainer = document.getElementById('falling-numbers');
+      const numberCount = 50; // Number of falling numbers
+
+      for (let i = 0; i < numberCount; i++) {
+        const numberElement = document.createElement('div');
+        numberElement.classList.add('falling-number');
+        numberElement.style.left = `${Math.random() * 100}vw`; // Random horizontal position
+        numberElement.textContent = Math.floor(Math.random() * 10); // Random number
+
+        // Animation duration and delay for randomness
+        const animationDuration = Math.random() * 3 + 3; // Between 3s and 6s
+        const animationDelay = Math.random() * 2 + 1; // Between 1s and 3s delay
+        numberElement.style.animationDuration = `${animationDuration}s`;
+        numberElement.style.animationDelay = `${animationDelay}s`;
+
+        fallingNumbersContainer.appendChild(numberElement);
+      }
+    }
+
+    // Call the function to generate falling numbers with trail
+    generateFallingNumbers();
+  </script>
+  <script>
+    // Wait for the DOM to fully load
+    document.addEventListener("DOMContentLoaded", function () {
+      const preloader = document.getElementById("preloader");
+  
+      // Simulate content load delay (for demo purposes)
+      setTimeout(() => {
+        preloader.classList.add("hidden"); // Add the hidden class to fade out
+      }, 2000); // Adjust the timeout as needed
+    });
+  </script>
+ <div class="mobile-header">
+    <div class="hamburger" onclick="toggleMenu(this)">
+      <div class="bar"></div>
+      <div class="bar"></div>
+      <div class="bar"></div>
+    </div>
+  </div>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="file:///C:/Users/PROACT%20HP/Desktop/WEB/home.html">Home</a>
+    <a href="file:///C:/Users/PROACT%20HP/Desktop/WEB/xena.html">Xena AI</a>
+    <a href="file:///C:/Users/PROACT%20HP/Desktop/WEB/new%20translator.html">XT Translate</a>
+    <a href="file:///C:/Users/PROACT%20HP/Desktop/xred.html">Learningsection</a>
+    <a href="file:///C:/Users/PROACT%20HP/Desktop/WEB/looooooo.html">Climate</a>
+    <a href="file:///C:/Users/PROACT%20HP/Desktop/contactus.html">Contact</a>
+  </div>  
+  <style>
+    .mobile-header {
+      position: fixed;
+      top: 0;
+      right: 0;
+      padding: 1rem;
+      z-index: 9999;
+      display: flex;
+      justify-content: flex-end;
+      width: 100%;
+      background-color: #2c2c2c00;
+    }
+
+    .hamburger {
+      width: 40px;
+      height: 30px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      cursor: pointer;
+    }
+
+    .bar {
+      height: 10px;
+      background-color: #07f4ad;
+      border-radius: 10px;
+      transition: 0.3s;
+    }
+
+    .hamburger.open .bar:nth-child(1) {
+      transform: rotate(45deg) translate(6px, 6px);
+    }
+
+    .hamburger.open .bar:nth-child(2) {
+      opacity: 0;
+    }
+
+    .hamburger.open .bar:nth-child(3) {
+      transform: rotate(-45deg) translate(6px, -6px);
+    }
+
+    /* Mobile Menu Styles */
+    .mobile-menu {
+      position: fixed;
+      top: 60px;
+      right: 0;
+      width: 200px;
+      background-color: #00c0702d;
+      color: #fff;
+      display: none;
+      flex-direction: column;
+      padding: 1rem;
+      z-index: 9998;
+    }
+
+.mobile-header {
+  position: fixed;
+  top: 0.75rem;
+  right: 1rem;
+  padding: 0.6rem 1rem;
+  z-index: 9999;
+  display: flex;
+  justify-content: flex-end;
+  width: auto;
+  background: rgba(255, 255, 255, 0);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: 16px;
+  box-shadow: 0 0 20px rgba(0, 255, 106, 0);
+}
+
+.hamburger .bar {
+  height: 4px;
+  background-color: #07f4ad;
+  border-radius: 5px;
+  transition: 0.3s;
+}
+
+.mobile-menu {
+  transition: all 0.3s ease-in-out;
+  border-radius: 0 0 12px 12px;
+}
+
+
+    .mobile-menu a {
+      color: #07f47e;
+      text-decoration: none;
+      margin: 10px 0;
+      font-size: 18px;
+    }
+
+    .mobile-menu.active {
+      display: flex;
+    }
+  </style>
+<script>
+     
+    function toggleMenu(hamburger) {
+      hamburger.classList.toggle('open');
+      const menu = document.getElementById('mobileMenu');
+      menu.classList.toggle('active');
+    }
+  </script>
+  <!-- Floating AI Button -->
+<style>
+  #xena-ai-widget {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 9999;
+  }
+
+  #xena-toggle-btn {
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, #4a90e2, #6bff7f);
+    border-radius: 50%;
+    border: none;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    cursor: pointer;
+    color: white;
+    font-size: 28px;
+  }
+
+  #xena-frame {
+    position: fixed;
+    bottom: 67px;
+    right: 20px;
+    width: 400px;
+    height: 600px;
+    border: none;
+    border-radius: 12px;
+    display: none;
+    z-index: 9998;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+  }
+
+  @media screen and (max-width: 480px) {
+    #xena-frame {
+      width: 90%;
+      height: 80%;
+      right: 5%;
+    }
+  }
+</style>
+
+<div id="xena-ai-widget">
+  <button id="xena-toggle-btn">🤖</button>
+</div>
+<iframe id="xena-frame" src="file:///C:/Users/PROACT%20HP/Desktop/WEB/xena.html" allow="clipboard-write"></iframe>
+<script>
+  const toggleBtn = document.getElementById("xena-toggle-btn");
+  const iframe = document.getElementById("xena-frame");
+
+  toggleBtn.addEventListener("click", () => {
+    iframe.style.display = iframe.style.display === "block" ? "none" : "block";
+  });
+</script>
+
+
+</body>
+</html>

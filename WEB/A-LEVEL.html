@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Interactive Glowing Buttons</title>
+  <style>
+    :root {
+      --bg-color: #161616c0;
+      --menu-bg: #1a1a1a81;
+      --text-color: #fff;
+      --accent-color: #07f499;
+    }
+
+    html, body {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(-35deg, #4211c9, rgb(33, 167, 129), #0000002c, #c40089);
+      background-size: 400% 400%;
+      animation: gradientMotion 15s ease infinite;
+      overflow-x: hidden;
+      overflow-y: auto;
+      min-height: 100vh;
+      font-family: sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      transition: background-color 0.5s, color 0.5s;
+    }
+
+    @keyframes gradientMotion {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .button-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 3rem;
+      padding: 4rem;
+      width: 100%;
+      max-width: 1200px;
+    }
+
+    .btn {
+      padding: 25px 40px;
+      font-size: 1.3rem;
+      border: none;
+      outline: none;
+      color: var(--text-color);
+      cursor: pointer;
+      position: relative;
+      z-index: 0;
+      border-radius: 12px;
+      text-align: center;
+      text-decoration: none;
+      transition: transform 0.2s ease;
+      min-width: 220px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .btn::after {
+      content: "";
+      z-index: -1;
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background-color: #25252560;
+      left: 0;
+      top: 0;
+      border-radius: 10px;
+    }
+
+    .btn::before {
+      content: "";
+      background: linear-gradient(
+        45deg,
+        #00FFD5, #002BFF,
+      );
+      position: absolute;
+      top: -2px;
+      left: -2px;
+      background-size: 600%;
+      z-index: -1;
+      width: calc(100% + 4px);
+      height:  calc(100% + 4px);
+      filter: blur(8px);
+      animation: glowing 20s linear infinite;
+      transition: opacity .3s ease-in-out;
+      border-radius: 10px;
+      opacity: 0;
+    }
+
+    @keyframes glowing {
+      0% {background-position: 0 0;}
+      50% {background-position: 400% 0;}
+      100% {background-position: 0 0;}
+    }
+
+    .btn:hover::before {
+      opacity: 1;
+    }
+
+    .btn:active::after {
+      background: transparent;
+    }
+
+    .btn:active {
+      color: #09755e;
+      font-weight: bold;
+    }
+
+    .btn:hover {
+      transform: scale(1.08);
+    }
+
+    .btn[title] {
+      position: relative;
+    }
+
+    .btn[title]:hover::after {
+      content: attr(title);
+      position: absolute;
+      top: -30px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #5f4b4b;
+      color: #fff;
+      padding: 5px 10px;
+      font-size: 0.8rem;
+      white-space: nowrap;
+      border-radius: 5px;
+      opacity: 0.85;
+    }
+
+    .icon-img {
+      width: 24px;
+      height: 24px;
+      margin-right: 10px;
+    }
+
+    .mobile-header {
+      position: fixed;
+      top: 0;
+      right: 0;
+      padding: 1rem;
+      z-index: 9999;
+      display: flex;
+      justify-content: flex-end;
+      width: 100%;
+      background-color: var(--menu-bg);
+    }
+
+    .hamburger {
+      width: 40px;
+      height: 30px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      cursor: pointer;
+    }
+
+    .bar {
+      height: 6px;
+      background-color: var(--accent-color);
+      border-radius: 3px;
+      transition: 0.3s;
+    }
+
+    .hamburger.open .bar:nth-child(1) {
+      transform: rotate(45deg) translate(6px, 6px);
+    }
+
+    .hamburger.open .bar:nth-child(2) {
+      opacity: 0;
+    }
+
+    .hamburger.open .bar:nth-child(3) {
+      transform: rotate(-45deg) translate(6px, -6px);
+    }
+
+    .mobile-menu {
+      position: fixed;
+      top: 60px;
+      right: 0;
+      width: 200px;
+      background-color: var(--menu-bg);
+      color: var(--text-color);
+      display: none;
+      flex-direction: column;
+      padding: 1rem;
+      z-index: 9998;
+    }
+
+    .mobile-menu a {
+      color: var(--accent-color);
+      text-decoration: none;
+      margin: 10px 0;
+      font-size: 18px;
+    }
+
+    .mobile-menu.active {
+      display: flex;
+    }
+  </style>
+</head>
+<body>
+     <div id="preloader">
+    <div class="preloader-content">A-LEVEL</div>
+  </div>
+  <script>
+    AOS.init({
+      duration: 1000, // Animation duration in milliseconds
+      easing: 'ease-out-cubic', // Easing style
+      once: true, // Animation runs only once
+    });
+  </script>
+  
+  <style>
+    /* Preloader Styles */
+    #preloader {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgb(0, 0, 0); /* Dark background */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      opacity: 1;
+      visibility: visible;
+      transition: opacity 1s ease-out, visibility 1s ease-out;
+    }
+  
+    #preloader.hidden {
+      opacity: 0;
+      visibility: hidden;
+    }
+  
+    .preloader-content {
+      font-size: 5rem;
+      font-weight: bold;
+      color: palegreen; /* Pale green color for the "X" */
+      animation: pulse 2s infinite;
+    }
+  
+    /* Pulse animation for the "X" */
+    @keyframes pulse {
+      0%, 100% {
+        transform: scale(1);
+        opacity: 1;
+      }
+      50% {
+        transform: scale(1.2);
+        opacity: 0.7;
+      }
+    }
+  </style>
+  <div class="mobile-header">
+    <div class="hamburger" onclick="toggleMenu(this)">
+      <div class="bar"></div>
+      <div class="bar"></div>
+      <div class="bar"></div>
+    </div>
+  </div>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#home">Home</a>
+    <a href="#features">Features</a>
+    <a href="#about">About</a>
+    <a href="#contact">Contact</a>
+  </div>
+
+  <div class="button-container">
+    <a href="file:///C:/Users/PROACT%20HP/Desktop/biology/BIOLOGY%20A%20LEVEL.html" class="btn" 
+      <img src="images/biology.png" class="icon-img" alt="Biology">BIOLOGY
+    </a>
+    <a href="file:///C:/Users/PROACT%20HP/Desktop/chemistry/CHEMISTRY%20A%20LEVEL.html" class="btn" 
+      <img src="images/chemistry.png" class="icon-img" alt="Chemistry">CHEMISTRY
+    </a>
+    <a href="file:///C:/Users/PROACT%20HP/Desktop/physics/PHYSICS%20A%20LEVEL.html" class="btn" 
+      <img src="images/physics.png" class="icon-img" alt="Physics">PHYSICS
+    </a>
+    <a href="file:///C:/Users/PROACT%20HP/Desktop/HISTORY/HISTORY%20AFRICA.html" class="btn" 
+      <img src="images/history.png" class="icon-img" alt="History">HISTORY
+    </a>
+    <a href="file:///C:/Users/PROACT%20HP/Desktop/ENGLISH/english%20o%20level.html" class="btn" 
+      <img src="images/english.png" class="icon-img" alt="English">ENGLISH
+    </a>
+    <a href="#" class="btn" title="Browse Files">
+      <img src="images/computer.png" class="icon-img" alt="Computer Science">COMPUTER SCIENCE
+    </a>
+    <a href="file:///C:/Users/PROACT%20HP/Desktop/mathematics/MATH%20A%20LEVEL.html" class="btn" 
+      <img src="images/math.png" class="icon-img" alt="Math">MATH
+    </a>
+    <a href="file:///C:/Users/PROACT%20HP/Desktop/psychology/PSCHOLOGY.html" class="btn"
+      <img src="images/math.png" class="icon-img" alt="Math">PSYCHOLOGY
+    </a>
+  </div>
+
+  <script>
+    function toggleMenu(hamburger) {
+      hamburger.classList.toggle('open');
+      const menu = document.getElementById('mobileMenu');
+      menu.classList.toggle('active');
+    }
+  </script>
+  <script>
+    // Wait for the DOM to fully load
+    document.addEventListener("DOMContentLoaded", function () {
+      const preloader = document.getElementById("preloader");
+  
+      // Simulate content load delay (for demo purposes)
+      setTimeout(() => {
+        preloader.classList.add("hidden"); // Add the hidden class to fade out
+      }, 2000); // Adjust the timeout as needed
+    });
+  </script>
+  <!-- Floating AI Button -->
+<style>
+  #xena-ai-widget {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 9999;
+  }
+
+  #xena-toggle-btn {
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, #4a90e2, #6bff7f);
+    border-radius: 50%;
+    border: none;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    cursor: pointer;
+    color: white;
+    font-size: 28px;
+  }
+
+  #xena-frame {
+    position: fixed;
+    bottom: 67px;
+    right: 20px;
+    width: 400px;
+    height: 600px;
+    border: none;
+    border-radius: 12px;
+    display: none;
+    z-index: 9998;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+  }
+
+  @media screen and (max-width: 480px) {
+    #xena-frame {
+      width: 90%;
+      height: 80%;
+      right: 5%;
+    }
+  }
+</style>
+
+<div id="xena-ai-widget">
+  <button id="xena-toggle-btn">🤖</button>
+</div>
+<iframe id="xena-frame" src="xena.html" allow="clipboard-write"></iframe>
+
+<script>
+  const toggleBtn = document.getElementById("xena-toggle-btn");
+  const iframe = document.getElementById("xena-frame");
+
+  toggleBtn.addEventListener("click", () => {
+    iframe.style.display = iframe.style.display === "block" ? "none" : "block";
+  });
+</script>
+
+</body>
+</html>
